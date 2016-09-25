@@ -3,7 +3,7 @@ require_relative 'recipe.rb'
 
 class RecipeBook
   attr_reader :recipes
-  
+
   def initialize
     @recipes = []
   end
@@ -21,14 +21,16 @@ class RecipeBook
   end
 
   def find_recipe_by_id(recipe_id)
-    recipes = []
+    p @recipes
     @recipes.each do |recipe|
-      recipes << recipe if recipe.id == recipe_id
-    end
-
-    raise "Can't find a recipe with an id of #{recipe_id.inspect}" unless recipe
-    recipes
+      p recipe.id
+      p recipe.id.class
+      return recipe if recipe.id == recipe_id
   end
+
+    raise "Can't find a recipe with an id of #{recipe_id}"
+  end
+
 end
 
  recipe_book = RecipeBook.new()
