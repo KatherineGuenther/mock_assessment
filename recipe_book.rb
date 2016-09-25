@@ -1,14 +1,23 @@
+require 'csv'
+require_relative 'recipe.rb'
+
 class RecipeBook
+  attr_reader :recipes
+  
   def initialize
     @recipes = []
   end
 
+  def read_file(filename)
+    array_of_rows = []
+    rows = CSV.readlines(filename, { headers: true, converters: :numeric, header_converters: :symbol })
+    rows.each { |row| array_of_rows << row }
+    array_of_rows
+  end
+
   def load_recipes(filename)
-    # I need to finish this before I give Bernie the program...
-
-    # The CSV file looks like this:
-    # "id", "name", "description", "ingredients", "directions"
-
+    recipes = read_file(filename)
+    recipes.each { |recipe| @recipes << Recipe.new(recipe) }
   end
 
   def find_recipe_by_id(recipe_id)
@@ -21,3 +30,6 @@ class RecipeBook
     recipes
   end
 end
+
+ recipe_book = RecipeBook.new()
+ recipe_book.load_recipes('recipes.csv')
