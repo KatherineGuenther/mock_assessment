@@ -21,17 +21,17 @@ class RecipeBook
   end
 
   def find_recipe_by_id(recipe_id)
-    p @recipes
-    @recipes.each do |recipe|
-      p recipe.id
-      p recipe.id.class
-      return recipe if recipe.id == recipe_id
-  end
-
+    @recipes.each { |recipe| return recipe if recipe.id == recipe_id }
     raise "Can't find a recipe with an id of #{recipe_id}"
   end
 
-end
+  # Create seperate view class for list and display
+  def display(id)
+  end
 
- recipe_book = RecipeBook.new()
- recipe_book.load_recipes('recipes.csv')
+  # Create seperate view class for list and display
+  def list
+    @recipes.each {|recipe| puts "#{recipe.id} - #{recipe.name}"}
+  end
+
+end
