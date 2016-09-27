@@ -27,6 +27,13 @@ class RecipeBook
 
   # Create seperate view class for list and display
   def display(id)
+    recipe = find_recipe_by_id(id)
+    puts "Recipe #{recipe.id} - #{recipe.name}"
+    puts recipe.description
+    puts "\nIngredients:\n"
+    puts recipe.ingredients
+    puts "\nPreparation Instructions"
+    puts recipe.directions
   end
 
   # Create seperate view class for list and display
